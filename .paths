@@ -4,4 +4,6 @@ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export GOPATH=~/dev/golang
 export PATH=${PATH}:$GOPATH/bin
 
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
 export PATH="/usr/local/sbin:$PATH"

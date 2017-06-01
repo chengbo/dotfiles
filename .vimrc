@@ -29,6 +29,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'terryma/vim-expand-region'
+Plugin 'ap/vim-buftabline'
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -71,6 +72,12 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:airline_theme='onedark'
 colorscheme onedark
+
+" Custom BufTabLine Color
+hi! link BufTabLineCurrent String
+hi! link BufTabLineActive Comment
+hi! link BufTabLineHidden Comment
+hi! link BufTabLineFill Comment
 " }}}
 
 set encoding=utf8
@@ -104,6 +111,18 @@ filetype indent on " Load filetype-specific indent files
 set wildmenu " Visual autocomplete for command menu
 
 set showmatch " Highlight matching [{()}]
+
+" Switch buffer by numbers
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>

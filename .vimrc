@@ -17,6 +17,9 @@ set noswapfile
 
 set clipboard=unnamed
 
+" Eliminate delays on terminal VIM
+set timeout timeoutlen=1000 ttimeoutlen=10
+
 " }}}
 
 " Plugin List {{{

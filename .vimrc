@@ -281,6 +281,13 @@ let g:RootIgnoreAgignore = 1
 nnoremap <silent> <D-t> :CtrlP<CR>
 nnoremap <silent> <D-r> :CtrlPMRU<CR>
 
+let g:ctrlp_prompt_mappings = {
+            \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
+            \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
+            \ 'PrtHistory(-1)':       ['<c-j>'],
+            \ 'PrtHistory(1)':        ['<c-k>'],
+            \ }
+
 let g:ctrlp_working_path_mode = 'ra'
 
 let g:ctrlp_custom_ignore = {

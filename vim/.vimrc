@@ -54,6 +54,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'vim-python/python-syntax'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'luochen1990/rainbow'
+Plugin 'mhinz/vim-startify'
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -349,4 +350,12 @@ endfunction
 
 " }}}
 
+" Startify {{{
+
+let g:startify_custom_header =
+  \ [ '           ___            __           __   __        __'
+  \ , '     |__| |__  |    |    /  \    |  | /  \ |__) |    |  \'
+  \ , '     |  | |___ |___ |___ \__/    |/\| \__/ |  \ |___ |__/'
+  \ ]
+" }}}
 " }}}

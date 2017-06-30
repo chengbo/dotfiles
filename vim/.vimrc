@@ -27,7 +27,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'joshdick/onedark.vim'
+Plugin 'arcticicestudio/nord-vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
@@ -72,9 +72,9 @@ if (has("termguicolors"))
 endif
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-let g:airline_theme='onedark'
+let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
-colorscheme onedark
+colorscheme nord
 
 " }}}
 
@@ -208,6 +208,11 @@ let g:ale_sign_error = '•'
 let g:ale_sign_warning = '○'
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
+
+hi Error   guifg=#ff0000 guibg=NONE
+hi Warning guifg=#dc752f guibg=NONE
+hi link ALEErrorSign   Error
+hi link ALEWarningSign Warning
 
 " }}}
 

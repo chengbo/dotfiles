@@ -55,6 +55,7 @@ Plugin 'vim-python/python-syntax'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'luochen1990/rainbow'
 Plugin 'mhinz/vim-startify'
+Plugin 'kshenoy/vim-signature'
 call vundle#end()
 filetype plugin indent on
 " }}}

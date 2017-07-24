@@ -56,6 +56,7 @@ Plugin 'vim-scripts/sessionman.vim'
 Plugin 'luochen1990/rainbow'
 Plugin 'mhinz/vim-startify'
 Plugin 'kshenoy/vim-signature'
+Plugin 'Yggdroot/indentLine'
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -364,4 +365,11 @@ let g:startify_custom_header =
   \ , '     |  | |___ |___ |___ \__/    |/\| \__/ |  \ |___ |__/'
   \ ]
 " }}}
+
+" indentLine {{{
+
+let g:indentLine_char = '⎸'
+
+" }}}
+
 " }}}

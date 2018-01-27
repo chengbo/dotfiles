@@ -186,6 +186,8 @@ inoremap <C-D> <Del>
 inoremap <C-K> <C-O>D
 inoremap <D-Enter> <C-O>o
 inoremap <D-S-Enter> <C-O>O
+inoremap <D-]> <C-T> " indent
+inoremap <D-[> <C-D> " unindent
 
 " Change Working Directory to that of the current file
 cmap cwd lcd %:p:h

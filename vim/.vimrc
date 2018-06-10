@@ -185,6 +185,9 @@ function! MaximizeToggle()
   endif
 endfunction
 
+" Delete current buffer without losing the split window
+nnoremap <leader>q :bp\|bd #<CR>
+
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <space> za " Space open/closes folds
 nnoremap <D-S> :w<CR>

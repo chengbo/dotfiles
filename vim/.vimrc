@@ -40,7 +40,6 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'octref/RootIgnore'
 Plugin 'tpope/vim-surround'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'airblade/vim-gitgutter'
@@ -322,7 +321,7 @@ let g:ctrlp_prompt_mappings = {
 let g:ctrlp_working_path_mode = 'ra'
 
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+            \ 'dir':  '\v[\/](venv|node_modules)|(\.(git|hg|svn))$',
             \ 'file': '\v\.(exe|so|dll|pyc)$',
             \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
             \ }

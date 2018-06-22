@@ -76,7 +76,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 colorscheme nord
-
+let g:nord_comment_brightness = 20
 " }}}
 
 " Formatting {{{
@@ -194,6 +194,8 @@ nnoremap <D-S> :w<CR>
 
 nmap <C-_> <leader>c<space>
 vmap <C-_> <leader>c<space>
+nmap <D-/> <leader>c<space>
+vmap <D-/> <leader>c<space>
 
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -209,8 +211,8 @@ inoremap <C-D> <Del>
 inoremap <C-K> <C-O>D
 inoremap <D-Enter> <C-O>o
 inoremap <D-S-Enter> <C-O>O
-inoremap <D-]> <C-T> " indent
-inoremap <D-[> <C-D> " unindent
+inoremap <D-]> <C-T>
+inoremap <D-[> <C-D>
 
 " Change Working Directory to that of the current file
 cmap cwd lcd %:p:h

@@ -86,4 +86,8 @@ source $ZSH/oh-my-zsh.sh
 
 for config (~/.zsh/*.zsh) source $config
 
+LESSPIPE=`which src-hilite-lesspipe.sh`
+export LESSOPEN="| ${LESSPIPE} %s"
+export LESS=" -R"
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

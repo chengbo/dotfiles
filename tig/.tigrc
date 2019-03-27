@@ -1,1 +1,4 @@
 set main-view	= line-number:no,interval=5 id:yes date:relative author:full commit-title:yes,graph,refs,overflow=no
+set mouse = true
+set mouse-scroll = 3
+set mouse-wheel-cursor = 1

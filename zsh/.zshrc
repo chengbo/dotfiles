@@ -51,7 +51,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx adb python sudo docker)
+plugins=(git osx adb python sudo docker zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,3 +91,6 @@ export LESSOPEN="| ${LESSPIPE} %s"
 export LESS=" -R"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+autoload -U compinit && compinit

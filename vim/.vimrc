@@ -76,7 +76,6 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 colorscheme nord
-let g:nord_comment_brightness = 20
 " }}}
 
 " Formatting {{{

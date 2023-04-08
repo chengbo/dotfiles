@@ -8,6 +8,7 @@ export PATH="/usr/local/sbin:$PATH"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 
-export PATH="/home/bo/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 export EDITOR='vim'
+export GPG_TTY=$(tty)

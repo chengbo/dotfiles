@@ -5,7 +5,7 @@ export GOPATH=~/dev/golang
 export PATH=${PATH}:$GOPATH/bin
 
 export PATH="/usr/local/sbin:$PATH"
-
+export PATH="~/.local/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 export EDITOR='vim'

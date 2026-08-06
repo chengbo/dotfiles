@@ -1,0 +1,31 @@
+#!/bin/sh
+base=${1:-$(git branch --show-current)}
+current=$(git branch --show-current)
+protected="dev main master $current"
+
+confirm_delete() {
+    branch="$1"; reason="$2"
+    read -p "Delete branch '$branch' ($reason)? [y/N] " ans
+    case "$ans" in
+        y|Y) git branch -D "$branch"; echo "Deleted $branch" ;;
+        *) echo "Skipped $branch" ;;
+    esac
+}
+
+for branch in $(git for-each-ref --format='%(refname:short)' refs/heads); do
+    case " $protected " in *" $branch "*) continue ;; esac
+    if git merge-base --is-ancestor "$branch" "$base"; then
+        git branch -d "$branch"
+        continue
+    fi
+    if ! git cherry "$base" "$branch" | grep -q '^+'; then
+        confirm_delete "$branch" "rebased/cherry-picked"
+        continue
+    fi
+    mb=$(git merge-base "$base" "$branch" 2>/dev/null) || continue
+    tree=$(git rev-parse "$branch^{tree}")
+    squash=$(git commit-tree "$tree" -p "$mb" -m _)
+    if git cherry "$base" "$squash" | grep -q '^-'; then
+        confirm_delete "$branch" "squash-merged"
+    fi
+done

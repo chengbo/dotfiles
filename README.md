@@ -1,17 +1,16 @@
-This is my personal dotfiles. It utilizes [GNU Stow](https://www.gnu.org/software/stow/) to keep all configuration files under this repository.
+This is my personal dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 
-Use package manager to install stow first. For example on MacOS, use
+## Setup on a new machine
 
-`brew install stow`
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply chengbo/dotfiles
+```
 
-Then I am able to install vim settings by
+## Usage
 
-`stow vim`
-
-or install tumx
-
-`stow tmux`
-
-To uninstall vim, use
-
-`stow -D vim`
+```sh
+chezmoi edit ~/.zshrc   # edit a managed file (edits the source, not the target)
+chezmoi diff            # preview what would change
+chezmoi apply           # apply the source state to the home directory
+chezmoi cd              # cd into the source directory to commit/push changes
+```

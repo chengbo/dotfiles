@@ -1,15 +1,26 @@
 [user]
-	email = {{ .email }}
-	name = {{ .name }}
-	signingkey = 459483740B96A7B9
-[core]
-	editor = vim
-	pager = less -FRSX
-	autocrlf = input
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0lAK7ovdaUZulkq5tK6rA3ztqY+ZVEI1FTHpZcWWwSYgjtOoWvOR46XFuC4yATY354QORbG6Mn740ZXv5d4yNiivkeHmCArap6VBW7jlgnPREycR5MXCDqyFdpOWLJalaqsvDdOPuhXzoFoBeb5QW0o3XWKcht2yz4u0jrSOZDyrYNPK5jJ3UkjZDSFVnWGkGxSG79hcpNRShC6ohrO+8tZiX1QvBz2lp2PZZejnDukg3wApaGxFXDjYSnORlSKYwO+iDVTTWfCntydNbWXzymWMPZVASKI7i5oSwYBWf/WiCgvxxxDUhS27zXybXmiQ7+e3HM4jIilqj2L6wbBh7
+	name = Bo Cheng
+	email = chengbo1983@gmail.com
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+{{- if eq .chezmoi.os "linux" }}
+	program = "/mnt/c/Users/BoCheng/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe"
+{{- end }}
+	allowedSignersFile = {{ .chezmoi.homeDir }}/.ssh/allowed_signers
+
 [commit]
-	gpgSign = true
-[merge]
-	conflictstyle = diff3
-[gitflow]
-	multi-release = true
-	multi-hotfix = true
+	gpgsign = true
+
+{{ if eq .chezmoi.os "linux" -}}
+[core]
+	sshCommand = ssh.exe
+{{ end -}}
+[includeIf "gitdir:~/tmo/"]
+	path = ~/.gitconfig-tmo
+
+[alias]
+    cleanup = "!~/.scripts/git-cleanup"

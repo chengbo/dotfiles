@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Creates symlinks so Cursor, Claude, and Codex all read the same skill folder.
+# Works on Mac, Linux, and WSL.
+
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+# ---- EDIT THIS LIST to match your skills ----
+# Format: "source_folder|target_symlink"
+LINKS=(
+  ".cursor/skills|.claude/skills"
+  ".cursor/skills|.agents/skills"
+)
+# ----------------------------------------------
+
+for entry in "${LINKS[@]}"; do
+  SRC="${entry%%|*}"
+  DST="${entry##*|}"
+
+  SRC_ABS="$REPO_ROOT/$SRC"
+  DST_ABS="$REPO_ROOT/$DST"
+
+  if [ ! -e "$SRC_ABS" ]; then
+    echo "Skip: source '$SRC' does not exist"
+    continue
+  fi
+
+  mkdir -p "$(dirname "$DST_ABS")"
+
+  # Remove old symlink, folder, or file at the target, if any
+  if [ -L "$DST_ABS" ] || [ -e "$DST_ABS" ]; then
+    rm -rf "$DST_ABS"
+  fi
+
+  ln -s "$SRC_ABS" "$DST_ABS"
+  echo "Linked $DST -> $SRC"
+done
+
+echo "Done. Skills are linked."

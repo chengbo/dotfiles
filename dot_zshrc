@@ -108,6 +108,7 @@ export PATH="$HOME/.dotnet:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+export PATH="$PATH:/snap/bin"
 export EDITOR=vim
 export VISUAL=vim
 

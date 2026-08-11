@@ -3,8 +3,12 @@ This is my personal dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 ## Setup on a new machine
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply chengbo/dotfiles
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --source ~/dotfiles chengbo/dotfiles
 ```
+
+`--source ~/dotfiles` makes chezmoi clone the repo straight into `~/dotfiles`, so that's
+the one and only clone on the machine. Don't separately `git clone` this repo elsewhere —
+a second clone can drift out of sync with the one chezmoi actually manages.
 
 ## Usage
 

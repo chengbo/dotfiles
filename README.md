@@ -12,5 +12,6 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply chengbo/dotfiles
 chezmoi edit ~/.zshrc   # edit a managed file (edits the source, not the target)
 chezmoi diff            # preview what would change
 chezmoi apply           # apply the source state to the home directory
+chezmoi update          # pull the latest changes from the repo and apply them
 chezmoi cd              # cd into the source directory to commit/push changes
 ```

@@ -15,6 +15,9 @@
 [commit]
 	gpgsign = true
 
+[push]
+	autoSetupRemote = true
+
 [core]
 	hooksPath = {{ .chezmoi.homeDir }}/.githooks
 	excludesfile = {{ .chezmoi.homeDir }}/.gitignore

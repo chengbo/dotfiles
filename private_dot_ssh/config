@@ -1,0 +1,2 @@
+Host vs-ssh.visualstudio.com
+	WarnWeakCrypto no

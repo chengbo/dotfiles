@@ -2,3 +2,11 @@ set main-view	= line-number:no,interval=5 id:yes date:relative author:full commi
 set mouse = true
 set mouse-scroll = 3
 set mouse-wheel-cursor = 1
+
+bind diff D >sh -c "git show %(commit) | delta --paging always"
+bind diff S >sh -c "git show %(commit) | delta --paging always --side-by-side"
+
+bind stage  D >sh -c "git diff HEAD -- %(file) | delta --paging always"
+bind stage  S >sh -c "git diff HEAD -- %(file) | delta --paging always --side-by-side"
+bind status D >sh -c "git diff HEAD -- %(file) | delta --paging always"
+bind status S >sh -c "git diff HEAD -- %(file) | delta --paging always --side-by-side"

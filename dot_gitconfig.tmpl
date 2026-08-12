@@ -21,8 +21,24 @@
 [core]
 	hooksPath = {{ .chezmoi.homeDir }}/.githooks
 	excludesfile = {{ .chezmoi.homeDir }}/.gitignore
+    pager = delta
 [includeIf "gitdir:~/tmo/"]
 	path = ~/.gitconfig-tmo
 
+[merge]
+    conflictStyle = zdiff3
+
 [alias]
     cleanup = "!~/.scripts/git-cleanup"
+
+[delta]
+    navigate = true
+	minus-style = red
+	plus-style = green
+	minus-emph-style = "red \"#4a1018\""
+	plus-emph-style = "green \"#1f5a2a\""
+	minus-non-emph-style = red
+	plus-non-emph-style = green
+	keep-plus-minus-markers = true
+	zero-style = normal
+    line-numbers = true

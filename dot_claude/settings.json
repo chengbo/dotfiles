@@ -1,0 +1,12 @@
+{
+  "theme": "dark",
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "failIfUnavailable": true
+  },
+  "effortLevel": "high"
+}

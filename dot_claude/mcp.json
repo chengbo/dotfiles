@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "ado": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@azure-devops/mcp",
+        "absinc",
+        "--authentication",
+        "azcli"
+      ]
+    }
+  }
+}

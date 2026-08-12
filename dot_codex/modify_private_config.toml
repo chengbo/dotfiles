@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+cat <<'STATIC'
+approval_policy        = "on-request"
+sandbox_mode           = "workspace-write"
+model_reasoning_effort = "high"
+
+[mcp_servers.ado]
+command = "npx"
+args = ["-y", "@azure-devops/mcp", "absinc", "--authentication", "azcli"]
+
+STATIC
+
+# Preserve any [projects."..."] trust entries already in the live file —
+# these are machine-local (Codex CLI writes them per project path) and
+# must not be hardcoded into the dotfiles source.
+awk '/^\[projects\./{p=1} p'

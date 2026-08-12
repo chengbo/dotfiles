@@ -113,6 +113,12 @@ alias ls='lsd --icon=always'
 alias ll='lsd -al --icon=always'
 alias l='lsd -l --icon=always'
 
+claude() {
+  command claude \
+    --mcp-config "$HOME/.claude/mcp.json" \
+    "$@"
+}
+
 export SSH_AUTH_SOCK=$HOME/.1password/agent.sock
 
 if [[ ! -S $SSH_AUTH_SOCK ]]; then

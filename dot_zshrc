@@ -107,6 +107,7 @@ source "$HOME/.path.zsh"
 
 export EDITOR=vim
 export VISUAL=vim
+export COLORTERM=truecolor
 
 # export LS_COLORS="di=1;36"
 alias ls='lsd --icon=always'

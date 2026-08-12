@@ -21,9 +21,6 @@
 [core]
 	hooksPath = {{ .chezmoi.homeDir }}/.githooks
 	excludesfile = {{ .chezmoi.homeDir }}/.gitignore
-{{- if eq .chezmoi.os "linux" }}
-	sshCommand = ssh.exe
-{{- end }}
 [includeIf "gitdir:~/tmo/"]
 	path = ~/.gitconfig-tmo
 

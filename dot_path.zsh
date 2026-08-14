@@ -3,6 +3,7 @@ export PATH="$HOME/.dotnet:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/snap/bin"
 
 export NVM_DIR="$HOME/.nvm"

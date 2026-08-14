@@ -1,5 +1,6 @@
 export DOTNET_ROOT="$HOME/.dotnet"
 export PATH="$HOME/.dotnet:$PATH"
+export PATH="$PATH:$HOME/.dotnet/tools"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"

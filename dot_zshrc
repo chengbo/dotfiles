@@ -113,6 +113,7 @@ export COLORTERM=truecolor
 alias ls='lsd --icon=always'
 alias ll='lsd -al --icon=always'
 alias l='lsd -l --icon=always'
+alias vim='nvim'
 
 claude() {
   command claude \

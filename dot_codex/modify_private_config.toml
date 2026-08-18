@@ -5,10 +5,14 @@ cat <<'STATIC'
 approval_policy        = "on-request"
 sandbox_mode           = "workspace-write"
 model_reasoning_effort = "high"
+approvals_reviewer = "auto_review"
 
 [mcp_servers.ado]
 command = "npx"
 args = ["-y", "@azure-devops/mcp", "absinc", "--authentication", "azcli"]
+
+[mcp_servers.ado.tools.wit_work_item]
+approval_mode = "approve"
 
 STATIC
 

@@ -1,3 +1,15 @@
 .claude/worktrees/
 .claude/skills
 .agents/skills
+
+**/.claude/.cc-writes/
+
+# Personal MCP config, symlinked to the dotfiles-managed ~/.claude/mcp.json in
+# each repo so Claude Code Desktop's WSL Code tab and the CLI both discover it
+# without duplicating config per project or touching ~/.claude.json.
+.mcp.json
+
+# Personal, local-only Claude Code settings (e.g. pre-approving the .mcp.json
+# servers above) — not shared with the team, and not every repo's own
+# .gitignore already excludes it.
+.claude/settings.local.json

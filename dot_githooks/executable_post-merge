@@ -1,5 +1,6 @@
 #!/bin/sh
 # Runs automatically after "git pull" / "git merge".
-# Re-creates the skill symlinks so they stay valid.
+# Re-creates the skill and MCP config symlinks so they stay valid.
 
 "$HOME/.scripts/git-link-skills"
+"$HOME/.scripts/git-link-mcp"

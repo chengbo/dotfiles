@@ -1,10 +1,11 @@
 #!/bin/sh
 # Runs automatically after "git checkout <branch>" / "git switch" /
-# "git worktree add". Re-creates the skill symlinks so they stay valid
-# after switching branches or creating a new worktree.
+# "git worktree add". Re-creates the skill and MCP config symlinks so they
+# stay valid after switching branches or creating a new worktree.
 
 # $3 = 1 for an actual branch checkout, 0 for a file-level checkout
 # (e.g. `git checkout -- some-file`), which we don't care about.
 if [ "$3" = "1" ]; then
   "$HOME/.scripts/git-link-skills"
+  "$HOME/.scripts/git-link-mcp"
 fi

@@ -1,4 +1,5 @@
 {
+  "enabledMcpjsonServers": ["ado"],
   "theme": "dark",
   "permissions": {
     "defaultMode": "auto"

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Symlinks the dotfiles-managed MCP config into the repo root as .mcp.json,
+# so Claude Code (CLI and Desktop, including WSL sessions) discovers it as a
+# project-scoped server without duplicating config per repo.
+# Works on Mac, Linux, and WSL.
+
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+SRC_ABS="$HOME/.claude/mcp.json"
+DST_ABS="$REPO_ROOT/.mcp.json"
+
+if [ ! -e "$SRC_ABS" ]; then
+  echo "Skip: source '$SRC_ABS' does not exist"
+  exit 0
+fi
+
+# Remove old symlink, folder, or file at the target, if any
+if [ -L "$DST_ABS" ] || [ -e "$DST_ABS" ]; then
+  rm -rf "$DST_ABS"
+fi
+
+ln -s "$SRC_ABS" "$DST_ABS"
+echo "Linked .mcp.json -> $SRC_ABS"

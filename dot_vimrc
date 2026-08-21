@@ -15,7 +15,29 @@ set autoread
 set nobackup
 set noswapfile
 
-set clipboard=unnamed
+set clipboard=unnamedplus
+
+" On WSL, nvim has no clipboard provider of its own (no X11/Wayland session,
+" no xclip/wl-clipboard) so yank/paste silently go nowhere. win32yank talks
+" to the real Windows clipboard directly — bundled with Windows Neovim
+" installs — so Ctrl+C/Ctrl+V into Windows apps (e.g. Chrome) actually works.
+if has('nvim')
+  let s:win32yank = '/mnt/c/Program Files/Neovim/bin/win32yank.exe'
+  if executable(s:win32yank)
+    let g:clipboard = {
+          \   'name': 'win32yank',
+          \   'copy': {
+          \      '+': [s:win32yank, '-i', '--crlf'],
+          \      '*': [s:win32yank, '-i', '--crlf'],
+          \    },
+          \   'paste': {
+          \      '+': [s:win32yank, '-o', '--lf'],
+          \      '*': [s:win32yank, '-o', '--lf'],
+          \   },
+          \   'cache_enabled': 0,
+          \ }
+  endif
+endif
 
 " Eliminate delays on terminal VIM
 set timeout timeoutlen=1000 ttimeoutlen=10
@@ -99,7 +121,9 @@ set foldnestmax=10               " 10 nested fold max
 
 set background=dark
 
-set guifont=Monaco\ for\ Powerline:h16
+if has('mac')
+  set guifont=Monaco\ for\ Powerline:h16
+endif
 set guioptions= " Remove menu bar/ toolbar / scrollbars on macvim
 
 set splitright                   " Put new vsplit windows to the right

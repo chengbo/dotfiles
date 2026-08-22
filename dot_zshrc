@@ -120,6 +120,15 @@ claude() {
     "$@"
 }
 
+win32yank="/mnt/c/Program Files/Neovim/bin/win32yank.exe"
+if [[ -x $win32yank ]]; then
+  paste-from-windows-clipboard() {
+    LBUFFER+="$("$win32yank" -o --lf 2>/dev/null)"
+  }
+  zle -N paste-from-windows-clipboard
+  bindkey '^V' paste-from-windows-clipboard
+fi
+
 export SSH_AUTH_SOCK=$HOME/.1password/agent.sock
 
 if [[ ! -S $SSH_AUTH_SOCK ]]; then

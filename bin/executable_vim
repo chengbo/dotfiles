@@ -1,37 +1,23 @@
 #!/bin/sh
-# On WSL with Neovide installed on the Windows side, launch that instead of
-# the terminal nvim; --wsl makes it spawn nvim inside WSL and just render the
-# GUI on Windows. Falls back to plain nvim elsewhere (e.g. macOS).
+# `vim` always launches plain terminal nvim now, regardless of Neovide —
+# `nvim` is the one that pops out Neovide (see bin/executable_nvim). Has to
+# resolve the real nvim binary directly rather than `exec nvim`: since
+# executable_nvim now shadows plain `nvim` on PATH with the
+# Neovide-launcher, a bare `exec nvim` here would loop back into that
+# instead of running in the terminal.
 #
 # This has to be a real executable on PATH, not a shell function/alias:
 # programs that shell out to $EDITOR/$VISUAL (git commit, crontab -e, etc.)
 # spawn a plain subshell, which inherits PATH but not shell functions.
 
-neovide="/mnt/c/Program Files/Neovide/neovide.exe"
-
-# Tools that host their own embedded nvim editor (e.g. Codex's Ctrl+G) invoke
-# `vim --embed` to speak nvim's msgpack-rpc protocol directly over stdio.
-# That can't be satisfied by popping out a separate GUI window (and Neovide's
-# own arg parser rejects a bare --embed anyway), so fall through to the real
-# nvim binary whenever it's present.
-for arg in "$@"; do
-  if [ "$arg" = "--embed" ]; then
-    exec nvim "$@"
+real_nvim=""
+IFS=:
+for dir in $PATH; do
+  if [ "$dir" != "$HOME/bin" ] && [ -x "$dir/nvim" ]; then
+    real_nvim="$dir/nvim"
+    break
   fi
 done
+unset IFS
 
-if [ -x "$neovide" ]; then
-  # Neovide's --wsl invocation doesn't source .zshrc, so plain `nvim` on
-  # PATH (added there) wouldn't be found — resolve the absolute path here
-  # instead and pass it via --neovim-bin.
-  # Files must be given as Neovide's own FILES_TO_OPEN args, not after --
-  # as raw NEOVIM_ARGS: the latter left Neovide's own default empty
-  # buffer as the focused tab, with the real file opened-but-unfocused
-  # in a second tab (visible as "[No Name]" + "COMMIT_EDITMSG" in the
-  # buftabline during `git commit`).
-  # No --fork: block until closed, since callers like `git commit` need to
-  # wait for the edit to finish.
-  exec "$neovide" --wsl --neovim-bin "$(command -v nvim)" "$@"
-else
-  exec nvim "$@"
-fi
+exec "${real_nvim:-nvim}" "$@"

@@ -21,11 +21,18 @@ Everything below needs to be installed separately on a new machine.
 - `zsh` + [Oh My Zsh](https://ohmyz.sh/) — shell and framework (`dot_zshrc`)
 - `git` — plus [`git-delta`](https://github.com/dandavison/delta) (`delta`) as the diff
   pager, and [`tig`](https://jonas.github.io/tig/) as the git TUI
-- `vim` + [Vundle](https://github.com/VundleVim/Vundle.vim) — install Vundle, then run
-  `vim +PluginInstall +qall` to fetch the plugins listed in `dot_vimrc`
+- Neovim (0.10+) — config lives in `dot_config/nvim`, bootstrapped via
+  [lazy.nvim](https://github.com/folke/lazy.nvim)/[LazyVim](https://www.lazyvim.org/); plugins
+  install themselves on first launch, no separate install step needed
+- [`ripgrep`](https://github.com/BurntSushi/ripgrep) and [`fd`](https://github.com/sharkdp/fd) —
+  power Neovim's Snacks picker (find/grep) and its `.gitignore`-aware file filtering; without
+  them it silently falls back to plain `find`, which ignores `.gitignore` entirely. On
+  Ubuntu/Debian: `sudo apt install ripgrep fd-find` (the package installs as `fdfind`; symlink
+  it to `fd` on `PATH` if some other tool expects the bare name)
 - [`lsd`](https://github.com/lsd-rs/lsd) — replaces `ls`/`ll`/`l`
 - A [Nerd Font](https://www.nerdfonts.com/) in your terminal — needed for the `bo` prompt
-  theme's icon and `lsd`'s icons to render instead of showing blank boxes
+  theme's icon, `lsd`'s icons, and Neovim's UI (bufferline/neo-tree/dashboard) to render
+  instead of showing blank boxes
 - 1Password — backs SSH auth (`SSH_AUTH_SOCK`) and SSH commit/tag signing
   (`commit.gpgsign = true` in `dot_gitconfig.tmpl`); the `allowedSignersFile` also has a
   specific pubkey hardcoded in `private_dot_ssh/allowed_signers`
@@ -41,13 +48,13 @@ Everything below needs to be installed separately on a new machine.
 
 **Optional (guarded — harmless if missing):**
 
-- `dotnet` SDK — `dot_path.zsh` adds `~/.dotnet` and `~/.dotnet/tools` to `PATH`
+- `dotnet` SDK — `dot_path.zsh` adds `~/.dotnet` and `~/.dotnet/tools` to `PATH`; also needed
+  for Neovim's C# tooling (OmniSharp, csharpier, easy-dotnet.nvim) in `dot_config/nvim`
 - Rust/Cargo — `dot_path.zsh` adds `~/.cargo/bin` to `PATH`
 - [nvm](https://github.com/nvm-sh/nvm) — `dot_path.zsh` sources it only if present
 - [Worktrunk](https://worktrunk.dev/) (`wt`) — shell integration in `dot_zshrc` only loads
   if `wt` is on `PATH`
 - `tmux` — config in `dot_tmux.conf`
-- `ag` (the_silver_searcher) — vim falls back to `find` if absent
 - `snap` — only relevant on Linux distros that use it
 
 **WSL-only:**

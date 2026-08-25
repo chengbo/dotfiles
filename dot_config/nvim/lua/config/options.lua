@@ -49,6 +49,16 @@ if vim.env.DOTNET_ROOT == nil and vim.fn.executable(dotnet_root .. "/dotnet") ==
     vim.env.PATH = dotnet_root .. ":" .. dotnet_root .. "/tools:" .. vim.env.PATH
 end
 
+-- Same story for /mnt/c/Windows/System32: this shell's PATH doesn't carry
+-- it, so anything nvim spawns that shells out to Windows binaries by bare
+-- name (e.g. markdown-preview.nvim's bundled server calling `cmd.exe` to
+-- open a browser) fails with an ENOENT-style error even though the
+-- binary's right there.
+local win_system32 = "/mnt/c/Windows/System32"
+if vim.fn.isdirectory(win_system32) == 1 then
+    vim.env.PATH = vim.env.PATH .. ":" .. win_system32
+end
+
 -- Formatting {{{
 
 opt.wrap = false   -- Do not wrap long lines

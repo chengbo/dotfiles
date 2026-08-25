@@ -1,0 +1,5 @@
+alias ls='lsd --icon=always'
+alias ll='lsd -al --icon=always'
+alias l='lsd -l --icon=always'
+# Ubuntu/Debian package the `bat` command as `batcat` to avoid a name clash
+alias bat='batcat'

@@ -30,6 +30,8 @@ Everything below needs to be installed separately on a new machine.
   Ubuntu/Debian: `sudo apt install ripgrep fd-find` (the package installs as `fdfind`; symlink
   it to `fd` on `PATH` if some other tool expects the bare name)
 - [`lsd`](https://github.com/lsd-rs/lsd) — replaces `ls`/`ll`/`l`
+- [`bat`](https://github.com/sharkdp/bat) — aliased from `bat`; on Ubuntu/Debian the package
+  installs as `batcat` (same name clash as `fd`/`fdfind` above): `sudo apt install bat`
 - A [Nerd Font](https://www.nerdfonts.com/) in your terminal — needed for the `bo` prompt
   theme's icon, `lsd`'s icons, and Neovim's UI (bufferline/neo-tree/dashboard) to render
   instead of showing blank boxes

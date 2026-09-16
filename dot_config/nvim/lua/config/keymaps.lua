@@ -18,3 +18,9 @@ vim.keymap.set("n", "<leader>yP", function()
   vim.fn.setreg("+", path)
   vim.notify("Copied absolute path: " .. path)
 end, { desc = "Yank Absolute Path" })
+
+-- Set here, not as a lazy.nvim `keys` spec entry: this loads on VeryLazy,
+-- strictly after all plugin-spec keys (including Snacks' own <leader>gd
+-- git-diff-picker binding) are registered, so it deterministically wins
+-- instead of racing with them for the same lhs.
+vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Code Diff" })

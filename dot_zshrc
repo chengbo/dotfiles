@@ -129,10 +129,22 @@ fi
 
 export SSH_AUTH_SOCK=$HOME/.1password/agent.sock
 
+# -S only checks that the socket *file* exists, not that anything is still
+# listening on it (a dead relay leaves the file behind). Probe with ssh-add;
+# exit code 2 means "can't connect to agent" and means the relay needs restarting.
+needs_ssh_relay=0
 if [[ ! -S $SSH_AUTH_SOCK ]]; then
+  needs_ssh_relay=1
+else
+  ssh-add -l >/dev/null 2>&1
+  [[ $? -eq 2 ]] && needs_ssh_relay=1
+fi
+
+if [[ $needs_ssh_relay -eq 1 ]]; then
   mkdir -p $(dirname $SSH_AUTH_SOCK)
   rm -f $SSH_AUTH_SOCK
   (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"/mnt/c/Users/BoCheng/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
+unset needs_ssh_relay
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

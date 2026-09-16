@@ -1,2 +1,5 @@
 [user]
 	email = bcheng@themortgageoffice.com
+
+[commit]
+	gpgsign = false
